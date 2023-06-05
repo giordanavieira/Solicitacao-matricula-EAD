@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Solicitação</title>
+</head>
+<body>
+    <h2>Solicitação de Inclusão/Matrícula</h2>
+    <form action="https://formsubmit.co/giordana.adm@gmail.com" method="POST">
+        <input type="text" name="name" placeholder="Nome Completo" required><br><br>
+        <input type="email" name="email" placeholder="Email" required><br><br>
+        <input type="text" name="funcao" placeholder="Função" required><br><br>
+
+        <p>Marque com X em quais áreas/setores irá atuar:</p>
+        <label><input type="checkbox" name="areas[]" value="Vendas"> Vendas</label><br>
+        <label><input type="checkbox" name="areas[]" value="Recepção"> Recepção</label><br>
+        <label><input type="checkbox" name="areas[]" value="Pré-Vendas"> Pré-Vendas</label><br>
+        <label><input type="checkbox" name="areas[]" value="Marketing"> Marketing</label><br>
+        <label><input type="checkbox" name="areas[]" value="Administração/Serviços Gerais/Manutenção/Estacionamento"> Administração/Serviços Gerais/Manutenção/Estacionamento</label><br>
+        <label><input type="checkbox" name="areas[]" value="Musculação"> Musculação</label><br>
+        <label><input type="checkbox" name="areas[]" value="Coletivas"> Coletivas</label><br>
+        <label><input type="checkbox" name="areas[]" value="Outros"> Outros: <input type="text" name="outros"></label><br><br>
+
+        <textarea name="observacoes" placeholder="Observações"></textarea><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
