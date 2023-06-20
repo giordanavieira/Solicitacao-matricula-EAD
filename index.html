@@ -2,25 +2,172 @@
 <html>
 <head>
     <title>Formulário de Solicitação</title>
+    <style>
+        /* Estilos CSS aqui */
+    </style>
+    <script>
+        function validarEmail(email) {
+            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            return regex.test(email);
+        }
+
+        function validarFormulario(event) {
+            var emailInput = document.getElementById("email");
+            var email = emailInput.value.trim();
+
+            if (!validarEmail(email)) {
+                alert("Por favor, digite um e-mail válido.");
+                event.preventDefault();
+            }
+        }
+    </script>
+    <title>Formulário de Solicitação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+        
+        h2 {
+            color: #333;
+        }
+        
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        select {
+            height: 34px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding: 5px 30px 5px 10px;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%23333' d='M6 9l4-4H2z'/></svg>") no-repeat right #fff;
+            background-position-x: calc(100% - 10px);
+            background-position-y: 50%;
+        }
+        
+        textarea {
+            resize: vertical;
+        }
+        
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        .outros-div {
+            display: none;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .div-ajustada {
+            width: calc(100% - 40px);
+        }
+        
+        .logo {
+            position: absolute;
+            top: 1px;
+            left: 900px;
+            max-width: 80px;
+            max-height: 80px;
+        }
+    </style>
+    <script>
+        function mostrarDivOutros() {
+            var select = document.getElementById("area");
+            var divOutros = document.getElementById("div-outros");
+            divOutros.style.display = select.value === "Outros" ? "block" : "none";
+        }
+    </script>
 </head>
 <body>
-    <h2>Solicitação de Inclusão/Matrícula</h2>
-    <form action="https://formsubmit.co/giordana.adm@gmail.com" method="POST">
-        <input type="text" name="name" placeholder="Nome Completo" required><br><br>
-        <input type="email" name="email" placeholder="Email" required><br><br>
-        <input type="text" name="funcao" placeholder="Função" required><br><br>
+    <div class="logo">
+        <img src="https://static.wixstatic.com/media/e95143_e42065b5d92f445686bac54af5c2d62f~mv2.png" alt="Logo da empresa">
+    </div>
+    
+    <h2>Solicitação de Inclusão | Matrícula</h2>
+    
+    <form action="https://formsubmit.co/giordana.adm@gmail.com" method="POST" onsubmit="validarFormulario(event)">
+        <div class="form-group div-ajustada">
+            <label for="nome">Nome Completo:</label>
+            <input type="hidden" name="_cc" value="giordanavieirat@gmail.com">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" id="nome" name="Nome" placeholder="Nome Completo" required>
+        </div>
+        
+        <div class="form-group div-ajustada">
+            <label for="email">Email atual:</label>
+            <input type="email" id="email" name="Email" placeholder="Email atual" required>
+        </div>
+        
+        <div class="form-group div-ajustada">
+            <label for="funcao">Função:</label>
+            <input type="text" id="funcao" name="Função" placeholder="Função" required>
+        </div>
 
-        <p>Marque com X em quais áreas/setores irá atuar:</p>
-        <label><input type="checkbox" name="areas[]" value="Vendas"> Vendas</label><br>
-        <label><input type="checkbox" name="areas[]" value="Recepção"> Recepção</label><br>
-        <label><input type="checkbox" name="areas[]" value="Pré-Vendas"> Pré-Vendas</label><br>
-        <label><input type="checkbox" name="areas[]" value="Marketing"> Marketing</label><br>
-        <label><input type="checkbox" name="areas[]" value="Administração/Serviços Gerais/Manutenção/Estacionamento"> Administração/Serviços Gerais/Manutenção/Estacionamento</label><br>
-        <label><input type="checkbox" name="areas[]" value="Musculação"> Musculação</label><br>
-        <label><input type="checkbox" name="areas[]" value="Coletivas"> Coletivas</label><br>
-        <label><input type="checkbox" name="areas[]" value="Outros"> Outros: <input type="text" name="outros"></label><br><br>
+        <div class="form-group div-ajustada">
+            <label for="area">Área/Setor em que irá atuar:</label>
+            <select name="Área/Setor" id="area" onchange="mostrarDivOutros()">
+                <option value="Vendas">Vendas</option>
+                <option value="Recepção">Recepção</option>
+                <option value="Pré-Vendas">Pré-Vendas</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Administração/Serviços Gerais/Manutenção/Estacionamento">Administração/Serviços Gerais/Manutenção/Estacionamento</option>
+                <option value="Musculação">Musculação</option>
+                <option value="Coletivas">Coletivas</option>
+                <option value="Outros">Outros</option>
+            </select>
+        </div>
+        
+        <div id="div-outros" class="outros-div div-ajustada">
+            <label for="outros">Descreva Outros:</label>
+            <input type="text" id="outros" name="Outros" placeholder="Área/Setor" required>
+        </div>
+        <p>
 
-        <textarea name="observacoes" placeholder="Observações"></textarea><br><br>
+
+        </p>
+        <div class="form-group div-ajustada">
+            <label for="observacoes">Observações:</label>
+            <textarea id="observacoes" name="Observações" placeholder="Observações" rows="5" required></textarea>
+        </div>
 
         <button type="submit">Enviar</button>
     </form>
