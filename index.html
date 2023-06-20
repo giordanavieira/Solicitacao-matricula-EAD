@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formulário de Solicitação</title>
-    <style>
-        /* Estilos CSS aqui */
-    </style>
+    <title>Solicitação de Matrícula</title>
     <script>
         function validarEmail(email) {
             var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -21,8 +18,8 @@
             }
         }
     </script>
-    <title>Formulário de Solicitação</title>
     <style>
+         /* Estilos CSS aqui */
         body {
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
@@ -31,6 +28,7 @@
         
         h2 {
             color: #333;
+            margin-bottom: 30px;
         }
         
         form {
@@ -102,8 +100,8 @@
         
         .logo {
             position: absolute;
-            top: 1px;
-            left: 900px;
+            top: 5px;
+            left: 950px;
             max-width: 80px;
             max-height: 80px;
         }
@@ -125,12 +123,24 @@
     
     <form action="https://formsubmit.co/giordana.adm@gmail.com" method="POST" onsubmit="validarFormulario(event)">
         <div class="form-group div-ajustada">
+            
+            <label for="solicitante">Dados do(a) solicitante:</label>
+            <input type="email" name="email" placeholder="Digite seu email. (Iremos dar retorno por ele)" required>
+            <input type="hidden" name="_autoresponse" value="Enviado">
+        </div>
+
+            <div class="form-group div-ajustada">
+                <label for="colaborador">Dados do(a) colaborador(a):</label>
+            </div>
+           
+            <div class="form-group div-ajustada">
             <label for="nome">Nome Completo:</label>
             <input type="hidden" name="_cc" value="giordanavieirat@gmail.com">
-            <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
             <input type="text" id="nome" name="Nome" placeholder="Nome Completo" required>
+            
         </div>
+        
         
         <div class="form-group div-ajustada">
             <label for="email">Email atual:</label>
@@ -139,7 +149,7 @@
         
         <div class="form-group div-ajustada">
             <label for="funcao">Função:</label>
-            <input type="text" id="funcao" name="Função" placeholder="Função" required>
+            <input type="text" id="funcao" name="Função" placeholder="Função. (EX: PROFESSOR(A), ESTAGIÁRIO(A), RECEPCIONISTA, ETC.)" required>
         </div>
 
         <div class="form-group div-ajustada">
@@ -152,13 +162,13 @@
                 <option value="Administração/Serviços Gerais/Manutenção/Estacionamento">Administração/Serviços Gerais/Manutenção/Estacionamento</option>
                 <option value="Musculação">Musculação</option>
                 <option value="Coletivas">Coletivas</option>
-                <option value="Outros">Outros</option>
+                <option value="Outros">Outros (Ex: Personal, Wave Vip, etc.)</option>
             </select>
         </div>
         
         <div id="div-outros" class="outros-div div-ajustada">
             <label for="outros">Descreva Outros:</label>
-            <input type="text" id="outros" name="Outros" placeholder="Área/Setor" required>
+            <input type="text" id="outros" name="Outros" placeholder="Área/Setor. (EX: PERSONAL, WAVE VIP, ETC.)" required>
         </div>
         <p>
 
@@ -166,7 +176,7 @@
         </p>
         <div class="form-group div-ajustada">
             <label for="observacoes">Observações:</label>
-            <textarea id="observacoes" name="Observações" placeholder="Observações" rows="5" required></textarea>
+            <textarea id="observacoes" name="Observações" placeholder="Observações" rows="5"></textarea>
         </div>
 
         <button type="submit">Enviar</button>
