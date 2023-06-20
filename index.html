@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Solicitação de Matrícula</title>
+    <script src="https://cdn.jsdelivr.net/npm/email-validator-bulk/EmailValidator.js"></script>
     <script>
         function validarEmail(email) {
             var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -10,12 +11,31 @@
 
         function validarFormulario(event) {
             var emailInput = document.getElementById("email");
+            var emailAtualInput = document.getElementById("emailAtual");
             var email = emailInput.value.trim();
+            var emailAtual = emailAtualInput.value.trim();
 
             if (!validarEmail(email)) {
-                alert("Por favor, digite um e-mail válido.");
+                alert("Por favor, digite um e-mail válido no campo 'Digite seu email.'.");
+                event.preventDefault();
+            } else if (!EmailValidator.validate(email)) {
+                alert("O email digitado no campo 'Digite seu email.' não existe.");
                 event.preventDefault();
             }
+
+            if (!validarEmail(emailAtual)) {
+                alert("Por favor, digite um e-mail válido no campo 'Email atual.'.");
+                event.preventDefault();
+            } else if (!EmailValidator.validate(emailAtual)) {
+                alert("O email digitado no campo 'Email atual.' não existe.");
+                event.preventDefault();
+            }
+        }
+
+        function mostrarDivOutros() {
+            var select = document.getElementById("area");
+            var divOutros = document.getElementById("div-outros");
+            divOutros.style.display = select.value === "Outros" ? "block" : "none";
         }
     </script>
     <style>
@@ -106,13 +126,6 @@
             max-height: 80px;
         }
     </style>
-    <script>
-        function mostrarDivOutros() {
-            var select = document.getElementById("area");
-            var divOutros = document.getElementById("div-outros");
-            divOutros.style.display = select.value === "Outros" ? "block" : "none";
-        }
-    </script>
 </head>
 <body>
     <div class="logo">
@@ -126,7 +139,6 @@
             
             <label for="solicitante">Dados do(a) solicitante:</label>
             <input type="email" name="email" placeholder="Digite seu email. (Iremos dar retorno por ele)" required>
-            <input type="hidden" name="_autoresponse" value="Enviado">
         </div>
 
             <div class="form-group div-ajustada">
@@ -180,6 +192,8 @@
         </div>
 
         <button type="submit">Enviar</button>
+        <input type="hidden" name="_autoresponse" value="Enviado">
     </form>
 </body>
 </html>
+
