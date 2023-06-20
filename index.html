@@ -26,7 +26,7 @@
             if (!validarEmail(emailAtual)) {
                 alert("Por favor, digite um e-mail válido no campo 'Email atual.'.");
                 event.preventDefault();
-            } else if (!EmailValidator.validate(emailAtual)) {
+            } else if (!EmailValidator.validate(emailcolab)) {
                 alert("O email digitado no campo 'Email atual.' não existe.");
                 event.preventDefault();
             }
@@ -138,7 +138,7 @@
         <div class="form-group div-ajustada">
             
             <label for="solicitante">Dados do(a) solicitante:</label>
-            <input type="email" name="email" placeholder="Digite seu email. (Iremos dar retorno por ele)" required>
+            <input type="email" id="email" name="email" placeholder="Digite seu email. (Iremos dar retorno por ele)" required>
         </div>
 
             <div class="form-group div-ajustada">
@@ -156,7 +156,7 @@
         
         <div class="form-group div-ajustada">
             <label for="email">Email atual:</label>
-            <input type="email" id="email" name="Email" placeholder="Email atual" required>
+            <input type="email" id="emailcolab" name="Email" placeholder="Email atual" required>
         </div>
         
         <div class="form-group div-ajustada">
