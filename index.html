@@ -2,53 +2,22 @@
 <html>
 <head>
     <title>Solicitação de Matrícula</title>
-    <script src="https://cdn.jsdelivr.net/npm/email-validator-bulk/EmailValidator.js"></script>
-    <script>
-        function validarEmail(email) {
-            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            return regex.test(email);
-        }
-
-        function validarFormulario(event) {
-            var emailInput = document.getElementById("email");
-            var emailAtualInput = document.getElementById("emailAtual");
-            var email = emailInput.value.trim();
-            var emailAtual = emailAtualInput.value.trim();
-
-            if (!validarEmail(email)) {
-                alert("Por favor, digite um e-mail válido no campo 'Digite seu email.'.");
-                event.preventDefault();
-            } else if (!EmailValidator.validate(email)) {
-                alert("O email digitado no campo 'Digite seu email.' não existe.");
-                event.preventDefault();
-            }
-
-            if (!validarEmail(emailAtual)) {
-                alert("Por favor, digite um e-mail válido no campo 'Email atual.'.");
-                event.preventDefault();
-            } else if (!EmailValidator.validate(emailcolab)) {
-                alert("O email digitado no campo 'Email atual.' não existe.");
-                event.preventDefault();
-            }
-        }
-
-        function mostrarDivOutros() {
-            var select = document.getElementById("area");
-            var divOutros = document.getElementById("div-outros");
-            divOutros.style.display = select.value === "Outros" ? "block" : "none";
-        }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <style>
          /* Estilos CSS aqui */
         body {
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
-            padding: 20px;
+            padding: 10px;
         }
         
         h2 {
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            margin: 10px 0 30px; /* Adicione margem superior e inferior para separar do logotipo */
+            text-align: center; /* Centralize o título no formulário */
         }
         
         form {
@@ -57,6 +26,12 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            width: 100%;
         }
         
         input[type="text"],
@@ -68,7 +43,7 @@
             border: 1px solid #ccc;
             border-radius: 3px;
             margin-bottom: 10px;
-            font-size: 14px;
+            font-size: 16px;
         }
         
         select {
@@ -80,20 +55,25 @@
             background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%23333' d='M6 9l4-4H2z'/></svg>") no-repeat right #fff;
             background-position-x: calc(100% - 10px);
             background-position-y: 50%;
+            width: 100%;
+            max-width: 300px;
         }
         
         textarea {
             resize: vertical;
+            font-size: 18px;
         }
         
         button[type="submit"] {
             background-color: #4caf50;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 3px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            display: block;
+            margin: 0 auto;
         }
         
         button[type="submit"]:hover {
@@ -119,12 +99,32 @@
         }
         
         .logo {
-            position: absolute;
-            top: 5px;
-            left: 950px;
-            max-width: 80px;
-            max-height: 80px;
+            position: relative;
+            display: block;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 0px; /* Centraliza e adiciona margem inferior */
+            text-align: center; /* Centraliza a logo */
         }
+
+        .logo img {
+            max-width: 100%;
+        }
+
+        /* Ajusta a largura da logo para telas menores */
+        @media screen and (max-width: 500px) {
+            .logo {
+                max-width: 100px;
+            }
+        }
+        .error-message {
+        color: #ff0000; /* Cor vermelha para destacar o texto de erro */
+        background-color: #fdd; /* Fundo amarelo claro para destacar o erro */
+        padding: 5px; /* Adiciona algum espaço interno para melhorar a aparência */
+        border: 1px solid #ff0000; /* Adiciona uma borda vermelha ao redor do erro */
+        border-radius: 3px; /* Bordas arredondadas para uma aparência mais amigável */
+        font-size: 14px; /* Tamanho da fonte do erro */
+    }
     </style>
 </head>
 <body>
@@ -134,29 +134,26 @@
     
     <h2>Solicitação de Inclusão | Matrícula</h2>
     
-    <form action="https://formsubmit.co/giordana.adm@gmail.com" method="POST" onsubmit="validarFormulario(event)">
+    <form action="https://formsubmit.co/giordana.adm@gmail.com" method="POST">
         <div class="form-group div-ajustada">
-            
             <label for="solicitante">Dados do(a) solicitante:</label>
-            <input type="email" id="email" name="email" placeholder="Digite seu email. (Iremos dar retorno por ele)" required>
+            <input type="email" id="emailsolicitante" name="email" placeholder="Digite seu email. (Iremos dar qualquer retorno por ele)" required>
         </div>
 
-            <div class="form-group div-ajustada">
-                <label for="colaborador">Dados do(a) colaborador(a):</label>
-            </div>
-           
-            <div class="form-group div-ajustada">
+        <div class="form-group div-ajustada">
+            <label for="colaborador">Dados do(a) colaborador(a):</label>
+        </div>
+        
+        <div class="form-group div-ajustada">
             <label for="nome">Nome Completo:</label>
             <input type="hidden" name="_cc" value="giordanavieirat@gmail.com">
             <input type="hidden" name="_template" value="table">
             <input type="text" id="nome" name="Nome" placeholder="Nome Completo" required>
-            
         </div>
-        
         
         <div class="form-group div-ajustada">
             <label for="email">Email atual:</label>
-            <input type="email" id="emailcolab" name="Email" placeholder="Email atual" required>
+            <input type="email" id="emailcolaborador" name="Email" placeholder="Email atual do colaborador" required>
         </div>
         
         <div class="form-group div-ajustada">
@@ -177,23 +174,84 @@
                 <option value="Outros">Outros (Ex: Personal, Wave Vip, etc.)</option>
             </select>
         </div>
+            </select>
+        </div>
         
         <div id="div-outros" class="outros-div div-ajustada">
             <label for="outros">Descreva Outros:</label>
             <input type="text" id="outros" name="Outros" placeholder="Área/Setor. (EX: PERSONAL, WAVE VIP, ETC.)" required>
         </div>
-        <p>
 
-
-        </p>
         <div class="form-group div-ajustada">
             <label for="observacoes">Observações:</label>
-            <textarea id="observacoes" name="Observações" placeholder="Observações" rows="5"></textarea>
+            <textarea id="observacoes" name="Observações" placeholder="Observações" rows="2"></textarea>
         </div>
 
         <button type="submit">Enviar</button>
         
     </form>
+
+    <script>
+        function validarEmail(email) {
+            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            return regex.test(email);
+        }
+
+        function exibirMensagemErro(input, mensagem) {
+            var mensagemErro = document.createElement("div");
+            mensagemErro.className = "error-message";
+            mensagemErro.textContent = mensagem;
+
+            var formGroup = input.closest(".form-group");
+            formGroup.appendChild(mensagemErro);
+        }
+
+        function removerMensagemErro(input) {
+            var formGroup = input.closest(".form-group");
+            var mensagemErro = formGroup.querySelector(".error-message");
+            if (mensagemErro) {
+                formGroup.removeChild(mensagemErro);
+            }
+        }
+
+        function validarCampoEmail(input) {
+            var email = input.value.trim();
+            if (!validarEmail(email)) {
+                exibirMensagemErro(input, "Por favor, digite um e-mail válido.");
+                return false;
+            } else {
+                removerMensagemErro(input);
+                return true;
+            }
+        }
+
+        function mostrarDivOutros() {
+            var select = document.getElementById("area");
+            var divOutros = document.getElementById("div-outros");
+            divOutros.style.display = select.value === "Outros" ? "block" : "none";
+        }
+
+
+        // Event listener para o campo de seleção "Área/Setor"
+        
+        var areaSelect = document.getElementById("area");
+        areaSelect.addEventListener("change", function() {
+            mostrarDivOutros();
+        });
+
+
+        // Event listener para o campo de e-mail do solicitante
+        var emailsolicitanteInput = document.getElementById("emailsolicitante");
+        emailsolicitanteInput.addEventListener("blur", function() {
+            validarCampoEmail(this);
+        });
+
+        // Event listener para o campo de e-mail do colaborador
+        var emailcolaboradorInput = document.getElementById("emailcolaborador");
+        emailcolaboradorInput.addEventListener("blur", function() {
+            validarCampoEmail(this);
+        });
+    </script>
 </body>
 </html>
 
